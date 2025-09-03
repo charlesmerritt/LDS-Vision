@@ -26,14 +26,10 @@ if __name__ == "__main__":
     M = np.load(input_file)
 
     def shape(M, q, output):
-        f = M.shape
-        h = M.shape
-        w = M.shape
+        f, h, w = M.shape
 
         Y = M.reshape((f, h * w)).T
-        U = svd(Y, full_matrices=False)
-        S = svd(Y, full_matrices=False)
-        Vt = svd(Y, full_matrices=False)
+        U, s, Vt = svd(Y, full_matrices=False)
         C = U[:, :q]
         X = np.diag(S[:q]).dot(Vt[:q, :])
 
